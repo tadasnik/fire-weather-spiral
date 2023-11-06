@@ -1,6 +1,7 @@
 <script>
+  import { Spinner } from "flowbite-svelte";
   import Spiral from "$lib/components/time-spiral/Spiral.svelte";
-  // import data from '$lib/data/fire_weather_region_int_2023_11_02.json';
+  // import data from "$lib/data/fire_weather_region_int_2023_11_02.json";
   import {
     variables,
     selectedVariable,
@@ -12,13 +13,14 @@
 
   let w, h;
   let isLoading = false;
+  $: console.log(data);
   $: filteredData = data.events[$selectedRegion];
 </script>
 
 <div class="h-full flex relative">
   {#if isLoading}
     <div class="loading">Loading...</div>
-  {:else if filteredData.length}
+  {:else if filteredData}
     <div class="h-full w-full" bind:clientWidth={w} bind:clientHeight={h}>
       <Spiral
         data={filteredData}

@@ -14,6 +14,13 @@
     NavHamburger,
     CloseButton,
   } from "flowbite-svelte";
+  import {
+    Footer,
+    FooterCopyright,
+    FooterLinkGroup,
+    FooterBrand,
+    FooterLink,
+  } from "flowbite-svelte";
   import { sineIn } from "svelte/easing";
   import { DarkMode } from "flowbite-svelte";
   import {
@@ -22,6 +29,8 @@
     regions,
     selectedRegion,
   } from "$lib/stores/selectStore.js";
+  import { assets } from "$app/paths";
+  import ukfdrsLogo from "$lib/assets/ukfdrs-logo.png";
 
   let transitionParams = {
     x: -320,
@@ -74,7 +83,7 @@
 
 <Sidebar
   {nonActiveClass}
-  asideClass="overflow-auto hidden md:block fixed inset-0 z-30 h-full w-64 border-r border-gray-200 dark:border-gray-600"
+  asideClass="overflow-auto hidden md:block fixed inset-0 z-30 h-full w-72 border-r border-gray-200 dark:border-gray-600"
 >
   <div class="flex items-center align-middle ml-auto p-2">
     <span class="self-center whitespace-nowrap text-xl font-bold">
@@ -177,6 +186,25 @@
   </SidebarWrapper>
 </Drawer>
 <!-- <div hidden={$drawerHidden} class="fixed inset-0 z-20 bg-gray-900/50 dark:bg-gray-900/60" on:click={closeDrawer} on:keydown={closeDrawer} role="presentation" /> -->
-<main class="p-4 md:ml-64 h-full pt-20 md:pt-4">
+<main class="p-4 md:ml-72 h-full pt-20 md:pt-4">
   <slot />
 </main>
+<Footer footerType="logo">
+  <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
+  <div class="sm:flex md:ml-72 sm:items-center sm:justify-between">
+    <p>
+      Fire Weather Index components (CEMS Global ECMWF Fire Forecasting) over
+      Hadley Centre's coherent precipitation regions of the UK. Tadas Nikonovas,
+      Centre for Wildfire Research, Swansea University. Toward a UK Fire Danger
+      Rating System project.
+    </p>
+  </div>
+  <div class="pt-2 sm:flex md:ml-72 sm:items-center sm:justify-between">
+    <FooterBrand
+      href="https://ukfdrs.com/"
+      src={ukfdrsLogo}
+      alt="UKFDRS Logo"
+      name="UKFDRS"
+    />
+  </div>
+</Footer>
