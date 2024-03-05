@@ -12,17 +12,11 @@
 
   /** @type {import('./$types').PageData} */
   export let data;
-  export let fireCounts;
 
   let w, h;
   let isLoading = false;
   $: console.log("counts", data.fireCounts);
   $: filteredData = data.events[$selectedRegion];
-  // const { counts, error } = await supabase
-  //   .from("detections")
-  //   .select("*")
-  //   .eq("event", 23768100);
-  // console.log("client", counts);
 </script>
 
 <div class="h-full flex relative">
